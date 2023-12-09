@@ -40,7 +40,8 @@ enum error_type ls_for_dir(char* path)
         if (stat(full_path, &file_stat) == 0)
         {
             printf("%40s -> %9s\n", file->d_name, S_ISDIR(file_stat.st_mode) ? "DIRECTORY" :
-                                                                          S_ISREG(file_stat.st_mode) ? "FILE" : "UNKNOWN");
+                                                                          S_ISREG(file_stat.st_mode) ? "FILE" :
+																		  S_ISLNK(file_stat.st_mode) ? "LINK" : "UNKNOWN");
         } else
         {
             printf("Error while opening file\n");
